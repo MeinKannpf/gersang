@@ -140,7 +140,7 @@ function OnEvent(event, arg)
 	if event == "G_RELEASED" and arg == 2 then  -- 본진홀드 , 주박OR허영, 뇌전주 , 격수로 전환	
 		
 		PressAndReleaseKey("tilde")	-- `키 누름	(본진) 본진홀드 필요없으면 지워주세요
-		PressAndReleaseKey`h2("h")	-- 본진홀드
+		PressAndReleaseKey("h")	-- 본진홀드
 
 		PressAndReleaseKey("2")	-- 2 뇌공
 		UseSkillCtrl("f",1)
