@@ -11,6 +11,7 @@ local function PressAndReleaseMouseButton(button)
 	Sleep(INPUT_DELAY)
 end -- end function
 
+
 local function PressAndReleaseKey(keyname)
 	PressKey(keyname)
 	Sleep(INPUT_DELAY)
@@ -38,7 +39,6 @@ local function GetCurrentPixel()
 	local coord_y_pixel = math.floor((coord_y_64K + (0.5 + 2^-16)) * (SCREEN_HIGHT - 1) / 65535)
 	return coord_x_pixel, coord_y_pixel
 end -- end function
-n
 
 
 local function MoveMousePixel(target_x_pixel,target_y_pixel,num)
@@ -101,11 +101,11 @@ end --end function
 --------------------------------설정 변경 ---------------------------------
 																		
 function OnEvent(event, arg)	
-	if event == "MOUSE_BUTTON_RELEASED" and arg == 2 then	-- 우클릭시 좌표 띄워주는 코드    -마우스용
+	if event == "MOUSE_BUTTON_RELEASED" and arg == 2 then	-- 우클릭시 좌표 띄워주는 코드
 		OutputLogMessage("(%d, %d)\n",GetCurrentPixel())	
 	end 		
 																																										
-	if event == "MOUSE_BUTTON_RELEASED" and arg == 3 then  -- 본진홀드 , 주박OR허영, 뇌전주 , 격수로 전환	   --마우스 가운데 버튼
+	if event == "MOUSE_BUTTON_RELEASED" and arg == 3 then  -- 본진홀드 , 주박OR허영, 뇌전주 , 격수로 전환	
 		
 		PressAndReleaseKey("tilde")	-- `키 누름	(본진) 본진홀드 필요없으면 지워주세요
 		PressAndReleaseKey("h")	-- 본진홀드
@@ -137,10 +137,10 @@ function OnEvent(event, arg)
 		PressAndReleaseKey("1")	
 	end
 
-	if event == "G_RELEASED" and arg == 2 then  -- 본진홀드 , 주박OR허영, 뇌전주 , 격수로 전환	- 로지텍 키보드 f2
+	if event == "G_RELEASED" and arg == 2 then  -- 본진홀드 , 주박OR허영, 뇌전주 , 격수로 전환	
 		
 		PressAndReleaseKey("tilde")	-- `키 누름	(본진) 본진홀드 필요없으면 지워주세요
-		PressAndReleaseKey("h")	-- 본진홀드
+		PressAndReleaseKey`h2("h")	-- 본진홀드
 
 		PressAndReleaseKey("2")	-- 2 뇌공
 		UseSkillCtrl("f",1)
@@ -167,15 +167,14 @@ function OnEvent(event, arg)
 
 	
 		PressAndReleaseKey("1")	
-	
 	end
 
-	if event == "MOUSE_BUTTON_RELEASED" and arg == 4 then	-- 스킬난사  마우스     -마우스 왼쪽 아래버튼
-		UseSkillCtrl("r",7) -----------지국
+	if event == "MOUSE_BUTTON_RELEASED" and arg == 4 then	-- 스킬난사
+		UseSkillCtrl("r",5) -----------지국
 		PressAndReleaseKey("0")	-- 난다데비
 		UseSkillCtrl("r",2)
 		PressAndReleaseKey("minus")	-- 각세스
-		UseSkillCtrl("b",3)
+		UseSkillCtrl("b",2)
 		PressAndReleaseKey("7")	-- 파동
 		UseSkillCtrl("r",3)
 		PressAndReleaseKey("6")	-- 군다리
@@ -199,11 +198,21 @@ function OnEvent(event, arg)
 	end	
 
 	if event == "MOUSE_BUTTON_RELEASED" and arg == 7 then	-- 아래쪽 키
-		PressAndReleaseKey("4")	-- 2 누름 (음양사)
-		UseSkillCtrl("d",2)
-		PressAndReleaseKey("2")	-- 1번 누름 (음양사 OR 염력사) 
-		UseSkillCtrl("G",14)
-		PressAndReleaseKey("1")
+		UseSkillCtrl("r",5)
+		PressAndReleaseKey("6")	-- 5번 누름  파동(음양사 OR 염력사) 
+		UseSkillCtrl("r",2)
+		UseSkillCtrl("h",1)
+		PressAndReleaseKey("7")	-- 5번 누름  파동(음양사 OR 염력사) 
+		UseSkillCtrl("r",3)
+		PressAndReleaseKey("8")	-- 5번 누름 (음양사 OR 염력사) 
+		UseSkillCtrl("r",2)
+		UseSkillCtrl("h",1)
+		PressAndReleaseKey("9")	-- 5번 누름 (음양사 OR 염력사) 
+		UseSkillCtrl("f",5)
+		UseSkillCtrl("h",1)
+		PressAndReleaseKey("0")	-- 5번 누름  파동(음양사 OR 염력사) 
+		UseSkillCtrl("r",2)
+		PressAndReleaseKey("1")       --지국
 
 	end	
 
@@ -233,7 +242,7 @@ function OnEvent(event, arg)
 	end	
 
 
-	if event == "MOUSE_BUTTON_RELEASED" and arg == 5 then	-- 칼퇴 건들거없음           --마우스 왼쪽 윗버튼
+	if event == "MOUSE_BUTTON_RELEASED" and arg == 5 then	-- 칼퇴 건들거없음
 		Retreat(964,590,1)	
 		
 	end
@@ -260,7 +269,7 @@ if event == "G_RELEASED" and arg == 3 then	-- 스킬난사
 		UseSkillCtrl("f",5)
 		UseSkillCtrl("h",1)
 		PressAndReleaseKey("1")       --지국
-			end
+	end
 
 
 	if event == "G_RELEASED" and arg ==7 then	-- 군다리
@@ -292,12 +301,9 @@ if event == "G_RELEASED" and arg == 3 then	-- 스킬난사
 		UseSkillCtrl("G",10)	-- Q버튼 , 7회 반복 
 	end	
 
-	if event == "G_RELEASED" and arg == 4 then	-- 도술사로 격수 마나 채우기
-		PressAndReleaseKey("4")	-- 2 누름 (음양사)
-		UseSkillCtrl("d",2)
-		PressAndReleaseKey("2")	-- 1번 누름 (음양사 OR 염력사) 
-		UseSkillCtrl("G",2)
-		PressAndReleaseKey("1") 
+	if event == "G_RELEASED" and arg == 9 then	-- 도술사로 격수 마나 채우기
+		PressAndReleaseKey("3")	-- 1번 누름 (음양사 OR 염력사) 
+		PressAndReleaseKey("G",2)
 	end	
 
 	if event == "G_RELEASED" and arg == 10 then	-- 도술사로 격수 마나 채우기
@@ -316,8 +322,8 @@ if event == "G_RELEASED" and arg == 3 then	-- 스킬난사
 
 	if event == "G_RELEASED" and arg == 1  then	-- 칼퇴 건들거없음
 		Retreat(964,590,1)	
-
 		
 	end
 
 
+end
